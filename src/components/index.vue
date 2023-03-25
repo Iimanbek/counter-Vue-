@@ -41,7 +41,6 @@ function removeTimer(id) {
 <style lang="css">
 .item_wrapper {
     display: grid;
-    grid-template-columns: auto auto auto;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 2vw;
@@ -65,5 +64,25 @@ function removeTimer(id) {
 .txtx {
     font-size: 56px;
     font-weight: 200;
+}
+
+@media screen and (max-width:990px) {
+    .item_wrapper {
+        grid-template-columns: 1fr 1fr;
+        text-align: center;
+    }
+
+    .new_item {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:511px) {
+    .item_wrapper {
+        grid-template-columns: 1fr;
+        text-align: center;
+        row-gap: 20px;
+    }
+
 }
 </style>

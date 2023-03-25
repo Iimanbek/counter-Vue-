@@ -274,7 +274,7 @@ function globalClick() {
 
 .item {
     height: 100px;
-    width: 300px;
+    width: 100%;
     display: flex;
     justify-content: center;
     flex-direction: column;
