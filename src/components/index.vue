@@ -2,9 +2,9 @@
     <div class="main_wrapper">
         <div class="item_wrapper">
             <Timer v-for="field in fields" :id="field.id" :key="field.id" @remove='removeTimer(field.id)' ref="fieldRefs" />
-            <div @click="addTimer()">
+            <div class="new_item" @click="addTimer()">
                 <div>
-                    <p>Add another timer</p>
+                    <p class="txtx">+</p>
                 </div>
             </div>
         </div>
@@ -39,8 +39,31 @@ function removeTimer(id) {
 
 </script>
 <style lang="css">
-.main_wrapper {
+.item_wrapper {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 2vw;
+    width: 100%;
+}
+
+.new_item {
+    border: 1px dashed gray;
+    height: 100%;
+    width: 300px;
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    transition: ease-in-out;
+}
+
+.new_item:hover {
+    border-color: white;
+}
+
+.txtx {
+    font-size: 56px;
+    font-weight: 200;
 }
 </style>

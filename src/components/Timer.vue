@@ -1,6 +1,11 @@
+
+
+
+
+<!--   Here I render every item of-(stopwatchs) then I send all then ti index.vie   -->
 <template>
     <div>
-        <div @click='globalClick'>
+        <div class="item" @click='globalClick'>
             <div>
                 <div :style="{ width: percentage * 100 + '%' }" v-if='!countingUp'>
                 </div>
@@ -13,9 +18,9 @@
                     </span>
                 </p>
             </div>
-            <div class="display mb-4">
+            <div>
                 <p :class="{ 'timer-blinking': isBlinking }" @click='retime'>
-                    <span>{{ display }}</span><span>.{{ displayMs }}</span>
+                    <span class="time">{{ display }}</span><span>.{{ displayMs }}</span>
                     <span>
                         <Icon icon="clarity:pencil-solid" :inline="true" />
                     </span>
@@ -38,7 +43,7 @@
                     <Icon icon="clarity:plus-circle-solid" :inline="true" />
                     Count Up
                 </button>
-                <button :disabled="isStopped && defaultSeconds === 0">
+                <button @click='countdown' v-else :disabled="isStopped && defaultSeconds === 0">
                     <Icon icon="clarity:minus-circle-solid" :inline="true" />
                     Count Down
                 </button>
@@ -265,5 +270,22 @@ function globalClick() {
     to {
         opacity: 0.25;
     }
+}
+
+.item {
+    height: 100px;
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(105, 105, 105, 1);
+
+}
+
+.time {
+    font-size: 24px;
+    font-weight: 600;
+
 }
 </style>
