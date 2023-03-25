@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1>При нажатии на время можете его менять</h1>
     <div>
       <v-timer />
     </div>
@@ -13,4 +14,9 @@ export default {
   }
 }
 </script>
-<style lang="css"></style>
+<style lang="css">
+h1 {
+  text-align: center;
+  padding: 0 0 50px 0;
+}
+</style>

@@ -11,33 +11,61 @@
                 </div>
             </div>
             <div v-if='displayTitle'>
-                <p @click='rename'>
+                <p class="edit_item" @click='rename'>
                     {{ displayTitle }}
-                    <span>
-                        <Icon icon="clarity:pencil-solid" :inline="true" />
+                    <span :inline="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            style="fill: white;transform: ;msFilter:;">
+                            <path
+                                d="m7 17.013 4.413-.015 9.632-9.54c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.756-.756-2.075-.752-2.825-.003L7 12.583v4.43zM18.045 4.458l1.589 1.583-1.597 1.582-1.586-1.585 1.594-1.58zM9 13.417l6.03-5.973 1.586 1.586-6.029 5.971L9 15.006v-1.589z">
+                            </path>
+                            <path
+                                d="M5 21h14c1.103 0 2-.897 2-2v-8.668l-2 2V19H8.158c-.026 0-.053.01-.079.01-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2z">
+                            </path>
+                        </svg>
                     </span>
                 </p>
             </div>
             <div>
                 <p :class="{ 'timer-blinking': isBlinking }" @click='retime'>
                     <span class="time">{{ display }}</span><span>.{{ displayMs }}</span>
-                    <span>
-                        <Icon icon="clarity:pencil-solid" :inline="true" />
+                    <span :inline="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            style="fill: white;transform: ;msFilter:;">
+                            <path
+                                d="m7 17.013 4.413-.015 9.632-9.54c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.756-.756-2.075-.752-2.825-.003L7 12.583v4.43zM18.045 4.458l1.589 1.583-1.597 1.582-1.586-1.585 1.594-1.58zM9 13.417l6.03-5.973 1.586 1.586-6.029 5.971L9 15.006v-1.589z">
+                            </path>
+                            <path
+                                d="M5 21h14c1.103 0 2-.897 2-2v-8.668l-2 2V19H8.158c-.026 0-.053.01-.079.01-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2z">
+                            </path>
+                        </svg>
                     </span>
                 </p>
             </div>
             <div class="controls">
                 <button type='button' @click='start' v-if='!isStarted'>
-                    <Icon icon="clarity:play-solid" :inline="true" />
-                    Start
+                    <div :inline="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            style="fill: white;transform: ;msFilter:;">
+                            <path d="M7 6v12l10-6z"></path>
+                        </svg></div>
+
                 </button>
                 <button type='button' @click='pause' v-else>
-                    <Icon icon="clarity:pause-solid" :inline="true" />
-                    Pause
+                    <div :inline="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            style="fill: white;transform: ;msFilter:;">
+                            <path d="M8 7h3v10H8zm5 0h3v10h-3z"></path>
+                        </svg>
+                    </div>
                 </button>
                 <button type='button' @click='stop' v-if='!isStopped'>
-                    <Icon icon="clarity:stop-solid" :inline="true" />
-                    Stop
+                    <!-- <Icon icon="clarity:stop-solid" :inline="true" /> -->
+                    <div :inline="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            style="fill: white;transform: ;msFilter:;">
+                            <path d="M7 7h10v10H7z"></path>
+                        </svg>
+                    </div>
                 </button>
                 <button @click='countup' v-if='!countingUp'>
                     <Icon icon="clarity:plus-circle-solid" :inline="true" />
@@ -48,8 +76,14 @@
                     Count Down
                 </button>
                 <button type='button' @click='remove'>
-                    <Icon icon="clarity:trash-solid" :inline="true" />
-                    Remove
+                    <div :inline="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            style="fill: white ;transform: ;msFilter:;">
+                            <path
+                                d="M6 7H5v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7H6zm4 12H8v-9h2v9zm6 0h-2v-9h2v9zm.618-15L15 2H9L7.382 4H3v2h18V4z">
+                            </path>
+                        </svg>
+                    </div>
                 </button>
             </div>
         </div>
@@ -150,10 +184,6 @@ function remove() {
     emit('remove', props.id)
 }
 
-/**
- * Update both display (hh:mm:ss and miliseconds)
- * @param {number} targetTime 
- */
 function updateDisplay(targetTime) {
     let nowTimestamp = Date.now()
     if (targetTime !== undefined) {
@@ -178,11 +208,8 @@ function updateDisplay(targetTime) {
     // console.log(display)
 }
 
-/**
- * Change the title
- */
+
 async function rename() {
-    // To change the title
     let { value: title } = await Swal.fire({
         title: 'Enter the new title',
         input: 'text',
@@ -193,17 +220,12 @@ async function rename() {
 }
 
 function countup() {
-    // Switch to counting up
     countingUp.value = true
     let nowTimestamp = Date.now()
     let difference = Math.abs(targetTimestamp - nowTimestamp)
     targetTimestamp = nowTimestamp - difference
-    // updateDisplay()
 }
 
-/**
- * Switch timer to counting down
- */
 function countdown() {
     if (!countingUp.value && defaultSeconds) {
         percentage.value = time * 1000 / defaultSeconds
@@ -212,12 +234,8 @@ function countdown() {
     let nowTimestamp = Date.now()
     let difference = Math.abs(targetTimestamp - nowTimestamp)
     targetTimestamp = nowTimestamp + difference
-    // updateDisplay()
 }
 
-/**
- * Change the timer's time
- */
 async function retime() {
     let { value: input } = await Swal.fire({
         title: 'Enter the new time',
@@ -276,11 +294,10 @@ function globalClick() {
     height: 100px;
     width: 100%;
     display: flex;
-    justify-content: center;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     background: rgba(105, 105, 105, 1);
-
 }
 
 .time {
@@ -288,4 +305,19 @@ function globalClick() {
     font-weight: 600;
 
 }
+
+button {
+    background: rgba(0, 0, 0, 0);
+    color: white;
+    height: 100%;
+    border: 1px solid white;
+}
+
+.controls,
+.edit_item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 </style>
+

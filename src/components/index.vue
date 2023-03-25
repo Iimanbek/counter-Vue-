@@ -41,7 +41,7 @@ function removeTimer(id) {
 <style lang="css">
 .item_wrapper {
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 2vw;
     width: 100%;
